@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 app.get("/", async (req, res) => {
     const { data } = await axios.get(url)
     
-    res.render('views/index', { data: data });
+    res.render('index', { data: data });
 })
 
 app.listen(3000, () => console.log("Server running on port 3000"))
