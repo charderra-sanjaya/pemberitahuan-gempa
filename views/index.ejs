@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Info Gempa terkini </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+
+<body class="bg-dark">
+    <div class="container d-flex justify-content-center mt-5">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-white">Informasi Gempa Realtime</h1>
+                <p class="text-white">Sumber: BMKG.go.id</p>
+                <p class="text-white">Build by: Charderra Sanjaya</p>
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <button type="button" class="btn " data-toggle="modal" data-target="#imageModal">
+                                <img src="<%= data.data.shakemap %>" class="img-fluid rounded-start" alt="...">
+                            </button>
+
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= data.data.tanggal %>,<%= data.data.jam %></h5>
+                                <p class="card-text"><small class="text-body-secondary">Magnitudo:</small>
+                                    <%= data.data.magnitude %></p>
+                                <p class="card-text"><small class="text-body-secondary">Kedalaman:</small>
+                                    <%= data.data.kedalaman %></p>
+                                <p class="card-text"><small class="text-body-secondary">Lokasi:</small>
+                                    <%= data.data.lintang %> - <%= data.data.bujur %></p>
+
+                                <p class="card-text"><small class="text-body-secondary">Wilayah:</small>
+                                    <%= data.data.wilayah %></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button to trigger the modal -->
+
+
+    <!-- The modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img id="previewImage" style="width: 100%;" src="" alt="Image Preview">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+    </script>
+
+    <script>
+        // Get the modal and the image preview element
+        const modal = document.getElementById('imageModal');
+        const previewImage = document.getElementById('previewImage');
+
+        // Attach a click event listener to all image elements
+        const imageElements = document.querySelectorAll('img');
+        imageElements.forEach((image) => {
+            image.addEventListener('click', function () {
+                // Update the src attribute of the preview image with the clicked image source
+                const src = this.src;
+                previewImage.src = src;
+
+                // Show the modal
+                modal.classList.add('show');
+                modal.style.display = 'block';
+                document.body.classList.add('modal-open');
+            });
+        });
+
+        // Close the modal when the close button is clicked
+        const closeButton = document.querySelector('.modal .close');
+        closeButton.addEventListener('click', function () {
+            // Hide the modal
+            modal.classList.remove('show');
+            modal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+
+            // Clear the preview image source
+            previewImage.src = '';
+        });
+    </script>
+</body>
+
+</html>
