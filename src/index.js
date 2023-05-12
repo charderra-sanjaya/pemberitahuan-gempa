@@ -8,6 +8,7 @@ const url = "https://cuaca-gempa-rest-api.vercel.app/quake"
 const app = express()
 
 app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
 
 app.get("/", async (req, res) => {
     const { data } = await axios.get(url)
