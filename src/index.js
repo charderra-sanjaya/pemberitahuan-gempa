@@ -124,8 +124,9 @@ app.set('views', __dirname + '/views');
 app.get("/", async (req, res) => {
     const { data } = await axios.get(url)
 
-    
-    
+  sendEmail();
+  infoGempaTelegram();
+
     res.render('index', { data: data });
 })
 
@@ -133,8 +134,6 @@ app.listen(3000, () => console.log("Server running on port 3000"))
 
 
  
-sendEmail();
-infoGempaTelegram();
 
 
  
