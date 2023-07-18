@@ -19,15 +19,15 @@ async function sendEmail() {
       let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'anakkodings@gmail.com',
-          pass: 'nbyvdcukwspzklgh'
+          user: 'your email',
+          pass: 'your pass'
         },
       });
 
       // Compose the email
       let mailOptions = {
-        from: '"Pemberitahuan Gempa" <anakkodings@gmail.com>',
-        to: 'charderrasnjy@gmail.com',
+        from: '"Pemberitahuan Gempa" <your email>',
+        to: 'you email',
         subject: 'Gempa Bumi',
         text: 'Gempa Bumi di Banten',
         html: `
@@ -59,7 +59,7 @@ async function sendEmail() {
 }
 
 function infoGempaTelegram(){
-const bot = new Telegraf("6296460799:AAGryJWN3n_Y8_97zGGDNRkt8F-03p9-9zg");
+const bot = new Telegraf("your api key telegram bot");
 
     bot.start(async (ctx) => {
         let message = 'Hi ' + ctx.from.first_name + ', Bot ini digunakan untuk memberitahukan gempa bumi yang terjadi.';
